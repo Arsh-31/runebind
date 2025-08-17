@@ -1,12 +1,20 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
+import {
+  BriefcaseConveyorBelt,
+  Computer,
+  Edit,
+  Merge,
+  Proportions,
+  Split,
+} from "lucide-react";
 
 // Define the interface for a Feature object
 interface Feature {
   name: string;
   description: string;
-  icon: string; // Or React.ReactNode if you pass actual icon components
+  icon: string | React.ReactNode; // Accepts string or React element
   route: string; // Route to navigate to
 }
 
@@ -21,42 +29,44 @@ const IconPlaceholder: React.FC<IconPlaceholderProps> = ({ children }) => (
   </div>
 );
 
+const size = 20;
+
 const features: Feature[] = [
   // Explicitly type the features array
   {
     name: "Merge PDFs",
     description: "Combine multiple PDF documents into a single, cohesive file.",
-    icon: "🔗", // Replace with an actual icon
+    icon: <Merge size={size} />, // Replace with an actual icon
     route: "/merge-pdf",
   },
   {
     name: "Split PDFs",
     description: "Extract specific pages or ranges from your PDFs with ease.",
-    icon: "✂️", // Replace with an actual icon
+    icon: <Split size={size} />, // Replace with an actual icon
     route: "/split-pdf",
   },
   {
     name: "Convert to PDF",
     description: "Transform various file formats into professional PDFs.",
-    icon: "🔄", // Replace with an actual icon
+    icon: <BriefcaseConveyorBelt size={size} />, // Replace with an actual icon
     route: "/pdf-to-jpg",
   },
   {
     name: "Edit PDFs",
     description: "Make quick edits to text, images, and pages directly.",
-    icon: "✏️", // Replace with an actual icon
+    icon: <Edit size={size} />, // Replace with an actual icon
     route: "/edit-pdf",
   },
   {
     name: "Compress PDFs",
     description: "Reduce file size without compromising document quality.",
-    icon: "🔽", // Replace with an actual icon
+    icon: <Computer size={size} />, // Replace with an actual icon
     route: "/compress-pdf",
   },
   {
     name: "Protect PDFs",
     description: "Add passwords and encryption to secure your sensitive files.",
-    icon: "🔒", // Replace with an actual icon
+    icon: <Proportions size={size} />, // Replace with an actual icon
     route: "/protect-pdf",
   },
 ];
@@ -69,7 +79,7 @@ const FeatureGrid: React.FC = () => {
   };
 
   return (
-    <section className="bg-white py-16 md:py-24">
+    <section className=" py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Powerful Tools at Your Fingertips
@@ -81,14 +91,14 @@ const FeatureGrid: React.FC = () => {
             ) => (
               <div
                 key={feature.name}
-                className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition duration-300 ease-in-out hover:shadow-lg cursor-pointer"
+                className="rounded-xl border border-gray-200 bg-gray-900 text-white p-6 shadow-sm transition duration-300 ease-in-out hover:shadow-lg cursor-pointer"
                 onClick={() => handleFeatureClick(feature.route)}
               >
-                <IconPlaceholder>{feature.icon}</IconPlaceholder>
-                <h3 className="mt-4 text-xl font-semibold text-gray-900">
-                  {feature.name}
-                </h3>
-                <p className="mt-2 text-gray-600">{feature.description}</p>
+                <div className="flex items-center space-x-2">
+                  <span>{feature.icon}</span>
+                  <h3 className="text-xl font-semibold">{feature.name}</h3>
+                </div>
+                <p className="mt-2">{feature.description}</p>
               </div>
             )
           )}
