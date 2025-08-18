@@ -46,30 +46,36 @@ const benefits = [
 const HowToUseSection: React.FC = () => {
   return (
     <div>
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-20 md:py-32 bg-[var(--brand-cream)]">
         <div className="container mx-auto px-4">
-          <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Simple Steps to Get Started
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-[var(--brand-midnight)] mb-6">
+              Simple Steps to Get Started
+            </h2>
+            <p className="text-xl text-[var(--brand-storm)] max-w-3xl mx-auto">
+              Get up and running with our PDF tools in just a few simple steps.
+              No complex setup required.
+            </p>
+          </div>
 
           <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
               {steps.map((item: Step) => (
                 <div
                   key={item.step}
-                  className="relative flex flex-col items-center text-center"
+                  className="relative flex flex-col items-center text-center group"
                 >
                   {/* Step Number Circle - positioned to overlap the box */}
-                  <div className="relative z-20 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gray-900 text-xl font-bold text-white shadow-md ring-4 ring-indigo-50 mb-0">
+                  <div className="relative z-20 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--brand-forest)] text-xl font-semibold text-[var(--brand-cloud)] mb-0">
                     {item.step}
                   </div>
 
                   {/* Content Card - positioned below the circle with negative margin to create overlap */}
-                  <div className="relative z-10 -mt-8 flex-grow rounded-xl bg-white p-6 pt-12 shadow-lg">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  <div className="relative z-10 -mt-6 flex-grow rounded-md bg-[var(--brand-cloud)] p-8 pt-12 border border-[var(--brand-storm)]">
+                    <h3 className="text-xl font-semibold text-[var(--brand-midnight)] mb-3">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-[var(--brand-storm)] leading-relaxed">
                       {item.description}
                     </p>
                   </div>
@@ -79,38 +85,47 @@ const HowToUseSection: React.FC = () => {
           </div>
         </div>
       </section>
-      <section className="bg-gray-50 py-20">
+
+      <section className="py-20 bg-[var(--brand-cloud)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Why Choose PDF Tools?
+              <h2 className="text-4xl md:text-5xl font-semibold text-[var(--brand-midnight)] mb-8">
+                Why Choose RuneBind?
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <Check className="h-6 w-6 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">{benefit}</span>
+                  <div key={index} className="flex items-start space-x-4 group">
+                    <div className="p-2 bg-[var(--brand-sky)] rounded-md">
+                      <Check className="h-5 w-5 text-[var(--brand-midnight)]" />
+                    </div>
+                    <span className="text-[var(--brand-storm)] text-lg leading-relaxed">
+                      {benefit}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
             <div className="relative">
-              <div className="bg-white rounded-2xl shadow-xl p-8">
-                <div className="flex items-center space-x-3 mb-6">
-                  <Shield className="h-8 w-8 text-primary-600" />
-                  <h3 className="text-2xl font-bold text-gray-900">
+              <div className="bg-[var(--brand-cream)] rounded-md p-10 border border-[var(--brand-storm)]">
+                <div className="flex items-center space-x-4 mb-8">
+                  <div className="p-3 bg-[var(--brand-forest)] rounded-sm">
+                    <Shield className="h-8 w-8 text-[var(--brand-cloud)]" />
+                  </div>
+                  <h3 className="text-3xl font-semibold text-[var(--brand-midnight)]">
                     Privacy First
                   </h3>
                 </div>
-                <p className="text-gray-600 mb-6">
+                <p className="text-[var(--brand-storm)] mb-8 text-lg leading-relaxed">
                   Your files are processed securely and automatically deleted
                   after 1 hour. We never store or access your documents.
                 </p>
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <div className="flex items-center space-x-2">
-                    <Check className="h-5 w-5 text-green-600" />
-                    <span className="text-green-800 font-medium">
+                <div className="bg-[var(--brand-cloud)] border border-[var(--brand-storm)] rounded-sm p-6">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-2 bg-[var(--brand-forest)] rounded-sm">
+                      <Check className="h-5 w-5 text-[var(--brand-cloud)]" />
+                    </div>
+                    <span className="text-[var(--brand-midnight)] font-medium text-lg">
                       100% Secure & Private
                     </span>
                   </div>

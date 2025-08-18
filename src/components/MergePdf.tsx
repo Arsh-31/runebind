@@ -108,27 +108,29 @@ export default function Merge() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
+    <div className="min-h-screen bg-[var(--brand-cloud)] p-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">PDF Merger</h1>
-          <p className="text-gray-600 text-lg">
+          <h1 className="text-4xl font-semibold text-[color:var(--brand-midnight)] mb-4">
+            PDF Merger
+          </h1>
+          <p className="text-[color:var(--brand-storm)] text-lg">
             Upload multiple PDF files and merge them into a single document
           </p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-8">
+        <div className="bg-[var(--brand-cream)] rounded-xl p-8 border border-[var(--brand-storm)]">
           {/* File Upload Area */}
           <div
-            className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors cursor-pointer"
+            className="border-2 border-dashed border-[var(--brand-storm)] rounded-lg p-8 text-center hover:bg-[var(--brand-cloud)]/60 transition-colors cursor-pointer"
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onClick={() => fileInputRef.current?.click()}
           >
             <div className="space-y-4">
-              <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+              <div className="mx-auto w-16 h-16 bg-[var(--brand-sky)] rounded-full flex items-center justify-center">
                 <svg
-                  className="w-8 h-8 text-blue-600"
+                  className="w-8 h-8 text-[color:var(--brand-midnight)]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -142,10 +144,10 @@ export default function Merge() {
                 </svg>
               </div>
               <div>
-                <p className="text-lg font-medium text-gray-700">
+                <p className="text-lg font-medium text-[color:var(--brand-midnight)]">
                   Drop PDF files here or click to browse
                 </p>
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-sm text-[color:var(--brand-storm)] mt-2">
                   Select multiple PDF files to merge (max 10 files, 50MB each)
                 </p>
               </div>
@@ -164,18 +166,18 @@ export default function Merge() {
           {/* Selected Files */}
           {files.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-lg font-medium text-gray-700 mb-4">
+              <h3 className="text-lg font-medium text-[color:var(--brand-midnight)] mb-4">
                 Selected Files ({files.length})
               </h3>
               <div className="space-y-2">
                 {files.map((file, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between bg-gray-50 rounded-lg p-3"
+                    className="flex items-center justify-between bg-[var(--brand-cloud)] rounded-lg p-3 border border-[var(--brand-storm)]"
                   >
                     <div className="flex items-center space-x-3">
                       <svg
-                        className="w-5 h-5 text-red-500"
+                        className="w-5 h-5 text-[color:var(--brand-midnight)]"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -185,16 +187,16 @@ export default function Merge() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <span className="text-sm font-medium text-gray-700">
+                      <span className="text-sm font-medium text-[color:var(--brand-midnight)]">
                         {file.name}
                       </span>
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-[color:var(--brand-storm)]">
                         ({(file.size / 1024 / 1024).toFixed(2)} MB)
                       </span>
                     </div>
                     <button
                       onClick={() => removeFile(index)}
-                      className="text-red-500 hover:text-red-700 transition-colors"
+                      className="text-[var(--brand-midnight)] hover:opacity-80 transition-opacity"
                     >
                       <svg
                         className="w-5 h-5"
@@ -221,8 +223,8 @@ export default function Merge() {
             <div
               className={`mt-4 p-3 rounded-lg ${
                 message.includes("successfully")
-                  ? "bg-green-100 text-green-700"
-                  : "bg-red-100 text-red-700"
+                  ? "bg-[var(--brand-cloud)] text-[var(--brand-midnight)] border border-[var(--brand-storm)]"
+                  : "bg-[var(--brand-cloud)] text-[var(--brand-midnight)] border border-[var(--brand-storm)]"
               }`}
             >
               {message}
@@ -237,9 +239,7 @@ export default function Merge() {
               className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
                 files.length < 2 || isUploading
                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : isMerged
-                  ? "bg-green-600 text-white hover:bg-green-700"
-                  : "bg-blue-600 text-white hover:bg-blue-700"
+                  : "bg-[var(--brand-forest)] text-[var(--brand-cloud)]"
               }`}
             >
               {isUploading ? (
@@ -272,7 +272,7 @@ export default function Merge() {
             {isMerged && (
               <button
                 onClick={startOver}
-                className="w-full py-2 px-6 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+                className="w-full py-2 px-6 rounded-lg font-medium bg-[var(--brand-cloud)] text-[var(--brand-midnight)] border border-[var(--brand-storm)]"
               >
                 Start Over
               </button>
@@ -281,8 +281,8 @@ export default function Merge() {
         </div>
 
         {/* Instructions */}
-        <div className="mt-8 bg-white rounded-xl shadow-lg p-6">
-          <h3 className="text-lg font-medium text-gray-700 mb-4">
+        <div className="mt-8 bg-[var(--brand-cream)] rounded-xl p-6 border border-[var(--brand-storm)]">
+          <h3 className="text-lg font-medium text-[color:var(--brand-midnight)] mb-4">
             How to use:
           </h3>
           <ol className="list-decimal list-inside space-y-2 text-gray-600">

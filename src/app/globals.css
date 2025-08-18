@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: fefcf6#;
-  --foreground: #2a2a2a;
+  /* Vintage palette */
+  --brand-forest: #5E6C5B;
+  --brand-cream: #F4EFE6;
+  --brand-cloud: #FEFCF6;
+  --brand-sky: #D6E0E2;
+  --brand-storm: #686867;
+  --brand-midnight: #162A2C;
+
+  --background: #FEFCF6;
+  --foreground: #162A2C;
 }
 
 @theme inline {
@@ -14,8 +22,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #f9fafb;
-    --foreground: #2a2a2a;
+    /* Keep the same soft contrast for dark preference to maintain vintage feel */
+    --background: #F4EFE6;
+    --foreground: #162A2C;
   }
 }
 

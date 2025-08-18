@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
+import { useState, useRef } from "react";
 
 export default function CompressPdf() {
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [compressedPdfBlob, setCompressedPdfBlob] = useState<Blob | null>(null);
   const [isCompressed, setIsCompressed] = useState(false);
-  const [quality, setQuality] = useState<'low' | 'medium' | 'high'>('medium');
+  const [quality, setQuality] = useState<"low" | "medium" | "high">("medium");
   const [originalSize, setOriginalSize] = useState<number | null>(null);
   const [compressedSize, setCompressedSize] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileSelect = (selectedFile: File | null) => {
     if (!selectedFile) return;
-    
-    if (selectedFile.type !== 'application/pdf') {
-      setMessage('Only PDF files are allowed');
+
+    if (selectedFile.type !== "application/pdf") {
+      setMessage("Only PDF files are allowed");
       return;
     }
-    
+
     setFile(selectedFile);
     setOriginalSize(selectedFile.size);
-    setMessage('');
+    setMessage("");
     setIsCompressed(false);
     setCompressedPdfBlob(null);
     setCompressedSize(null);
@@ -50,26 +50,26 @@ export default function CompressPdf() {
 
   const compressPDF = async () => {
     if (!file) {
-      setMessage('Please upload a PDF file');
+      setMessage("Please upload a PDF file");
       return;
     }
 
     setIsUploading(true);
-    setMessage('Compressing PDF...');
+    setMessage("Compressing PDF...");
 
     try {
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('quality', quality);
+      formData.append("file", file);
+      formData.append("quality", quality);
 
-      const response = await fetch('/api/compress-pdf', {
-        method: 'POST',
+      const response = await fetch("/api/compress-pdf", {
+        method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.error || 'Failed to compress PDF');
+        throw new Error(error.error || "Failed to compress PDF");
       }
 
       // Store the compressed PDF blob
@@ -77,11 +77,17 @@ export default function CompressPdf() {
       setCompressedPdfBlob(blob);
       setCompressedSize(blob.size);
       setIsCompressed(true);
-      
-      const compressionRatio = originalSize ? ((originalSize - blob.size) / originalSize * 100).toFixed(1) : '0';
-      setMessage(`PDF compressed successfully! Size reduced by ${compressionRatio}%. Click Download to save the file.`);
+
+      const compressionRatio = originalSize
+        ? (((originalSize - blob.size) / originalSize) * 100).toFixed(1)
+        : "0";
+      setMessage(
+        `PDF compressed successfully! Size reduced by ${compressionRatio}%. Click Download to save the file.`
+      );
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : 'Failed to compress PDF');
+      setMessage(
+        error instanceof Error ? error.message : "Failed to compress PDF"
+      );
     } finally {
       setIsUploading(false);
     }
@@ -89,11 +95,11 @@ export default function CompressPdf() {
 
   const downloadPDF = () => {
     if (!compressedPdfBlob) return;
-    
+
     const url = window.URL.createObjectURL(compressedPdfBlob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = 'compressed.pdf';
+    a.download = "compressed.pdf";
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(url);
@@ -112,53 +118,66 @@ export default function CompressPdf() {
     setFile(null);
     setCompressedPdfBlob(null);
     setIsCompressed(false);
-    setMessage('');
+    setMessage("");
     setOriginalSize(null);
     setCompressedSize(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = "";
     }
   };
 
   const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes';
+    if (bytes === 0) return "0 Bytes";
     const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const sizes = ["Bytes", "KB", "MB", "GB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
   return (
-    <div className="p-8">
+    <div className="min-h-screen bg-[var(--brand-cloud)] p-8">
       <div className="max-w-4xl mx-auto">
+        {/* Header Section */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+          <h1 className="text-4xl font-semibold text-[color:var(--brand-midnight)] mb-4">
             PDF Compressor
           </h1>
-          <p className="text-gray-600 text-lg">
-            Upload a PDF file to reduce its size
+          <p className="text-xl text-[color:var(--brand-storm)] max-w-2xl mx-auto">
+            Reduce PDF file size without losing quality. Fast, secure, and
+            completely free.
           </p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-8">
+        {/* Main Content Card */}
+        <div className="bg-[var(--brand-cream)] rounded-2xl p-8 md:p-12 border border-[var(--brand-storm)]">
           {/* File Upload Area */}
           <div
-            className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-purple-400 transition-colors cursor-pointer"
+            className="border-2 border-dashed border-[var(--brand-storm)] rounded-xl p-12 text-center hover:bg-[var(--brand-cloud)]/60 transition-colors cursor-pointer group"
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onClick={() => fileInputRef.current?.click()}
           >
-            <div className="space-y-4">
-              <div className="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
-                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <div className="space-y-6">
+              <div className="mx-auto w-20 h-20 bg-[var(--brand-sky)] rounded-full flex items-center justify-center">
+                <svg
+                  className="w-10 h-10 text-[color:var(--brand-midnight)]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
               </div>
               <div>
-                <p className="text-lg font-medium text-gray-700">
+                <p className="text-xl font-medium text-[color:var(--brand-midnight)] mb-2">
                   Drop a PDF file here or click to browse
                 </p>
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-[color:var(--brand-storm)]">
                   Select a PDF file to compress (max 50MB)
                 </p>
               </div>
@@ -175,26 +194,50 @@ export default function CompressPdf() {
 
           {/* Selected File */}
           {file && (
-            <div className="mt-6">
-              <h3 className="text-lg font-medium text-gray-700 mb-4">
+            <div className="mt-8">
+              <h3 className="text-xl font-semibold text-[color:var(--brand-midnight)] mb-4">
                 Selected File
               </h3>
-              <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3">
-                <div className="flex items-center space-x-3">
-                  <svg className="w-5 h-5 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-sm font-medium text-gray-700">{file.name}</span>
-                  <span className="text-xs text-gray-500">
-                    ({formatFileSize(file.size)})
-                  </span>
+              <div className="flex items-center justify-between bg-[var(--brand-cloud)] rounded-xl p-4 border border-[var(--brand-storm)]">
+                <div className="flex items-center space-x-4">
+                  <div className="p-2 bg-[var(--brand-forest)] rounded-lg">
+                    <svg
+                      className="w-6 h-6 text-[var(--brand-cloud)]"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <span className="text-lg font-medium text-[color:var(--brand-midnight)]">
+                      {file.name}
+                    </span>
+                    <div className="text-sm text-[color:var(--brand-storm)]">
+                      {formatFileSize(file.size)}
+                    </div>
+                  </div>
                 </div>
                 <button
                   onClick={startOver}
-                  className="text-red-500 hover:text-red-700 transition-colors"
+                  className="p-2 text-[color:var(--brand-midnight)] hover:bg-[color:var(--brand-cloud)] rounded-lg"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
@@ -203,53 +246,65 @@ export default function CompressPdf() {
 
           {/* Compression Quality Selection */}
           {file && (
-            <div className="mt-6">
-              <h3 className="text-lg font-medium text-gray-700 mb-4">
+            <div className="mt-8">
+              <h3 className="text-xl font-semibold text-[color:var(--brand-midnight)] mb-6">
                 Compression Quality
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <button
-                  onClick={() => setQuality('low')}
-                  className={`p-4 rounded-lg border-2 transition-colors ${
-                    quality === 'low'
-                      ? 'border-purple-500 bg-purple-50 text-purple-700'
-                      : 'border-gray-200 hover:border-purple-300'
+                  onClick={() => setQuality("low")}
+                  className={`p-6 rounded-xl border-2 transition-colors ${
+                    quality === "low"
+                      ? "border-[color:var(--brand-forest)] bg-[var(--brand-cloud)] text-[color:var(--brand-midnight)]"
+                      : "border-[color:var(--brand-storm)]/25 hover:border-[color:var(--brand-storm)]/40"
                   }`}
                 >
                   <div className="text-center">
-                    <div className="font-medium">Low</div>
-                    <div className="text-sm text-gray-500">Maximum compression</div>
-                    <div className="text-xs text-gray-400">Smallest file size</div>
+                    <div className="font-medium text-lg mb-2">Low</div>
+                    <div className="text-[color:var(--brand-storm)] mb-1">
+                      Maximum compression
+                    </div>
+                    <div className="text-sm text-[color:var(--brand-storm)]/80">
+                      Smallest file size
+                    </div>
                   </div>
                 </button>
-                
+
                 <button
-                  onClick={() => setQuality('medium')}
-                  className={`p-4 rounded-lg border-2 transition-colors ${
-                    quality === 'medium'
-                      ? 'border-purple-500 bg-purple-50 text-purple-700'
-                      : 'border-gray-200 hover:border-purple-300'
+                  onClick={() => setQuality("medium")}
+                  className={`p-6 rounded-xl border-2 transition-colors ${
+                    quality === "medium"
+                      ? "border-[color:var(--brand-forest)] bg-[var(--brand-cloud)] text-[color:var(--brand-midnight)]"
+                      : "border-[color:var(--brand-storm)]/25 hover:border-[color:var(--brand-storm)]/40"
                   }`}
                 >
                   <div className="text-center">
-                    <div className="font-medium">Medium</div>
-                    <div className="text-sm text-gray-500">Balanced compression</div>
-                    <div className="text-xs text-gray-400">Good quality & size</div>
+                    <div className="font-medium text-lg mb-2">Medium</div>
+                    <div className="text-[color:var(--brand-storm)] mb-1">
+                      Balanced compression
+                    </div>
+                    <div className="text-sm text-[color:var(--brand-storm)]/80">
+                      Good quality & size
+                    </div>
                   </div>
                 </button>
-                
+
                 <button
-                  onClick={() => setQuality('high')}
-                  className={`p-4 rounded-lg border-2 transition-colors ${
-                    quality === 'high'
-                      ? 'border-purple-500 bg-purple-50 text-purple-700'
-                      : 'border-gray-200 hover:border-purple-300'
+                  onClick={() => setQuality("high")}
+                  className={`p-6 rounded-xl border-2 transition-colors ${
+                    quality === "high"
+                      ? "border-[color:var(--brand-forest)] bg-[var(--brand-cloud)] text-[color:var(--brand-midnight)]"
+                      : "border-[color:var(--brand-storm)]/25 hover:border-[color:var(--brand-storm)]/40"
                   }`}
                 >
                   <div className="text-center">
-                    <div className="font-medium">High</div>
-                    <div className="text-sm text-gray-500">Minimum compression</div>
-                    <div className="text-xs text-gray-400">Best quality</div>
+                    <div className="font-medium text-lg mb-2">High</div>
+                    <div className="text-[color:var(--brand-storm)] mb-1">
+                      Minimum compression
+                    </div>
+                    <div className="text-sm text-[color:var(--brand-storm)]/80">
+                      Best quality
+                    </div>
                   </div>
                 </button>
               </div>
@@ -258,24 +313,38 @@ export default function CompressPdf() {
 
           {/* Compression Results */}
           {isCompressed && originalSize && compressedSize && (
-            <div className="mt-6 p-4 bg-green-50 rounded-lg">
-              <h3 className="text-lg font-medium text-green-800 mb-2">
+            <div className="mt-8 p-6 bg-[var(--brand-cloud)] rounded-xl border border-[color:var(--brand-storm)]/25">
+              <h3 className="text-xl font-semibold text-[color:var(--brand-midnight)] mb-4">
                 Compression Results
               </h3>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <span className="text-gray-600">Original size:</span>
-                  <span className="ml-2 font-medium">{formatFileSize(originalSize)}</span>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-lg">
+                <div className="text-center p-4 bg-[var(--brand-cream)] rounded-lg border border-[color:var(--brand-storm)]/25">
+                  <div className="text-2xl font-medium text-[color:var(--brand-midnight)]">
+                    {formatFileSize(originalSize)}
+                  </div>
+                  <div className="text-sm text-[color:var(--brand-storm)]">
+                    Original size
+                  </div>
                 </div>
-                <div>
-                  <span className="text-gray-600">Compressed size:</span>
-                  <span className="ml-2 font-medium text-green-600">{formatFileSize(compressedSize)}</span>
+                <div className="text-center p-4 bg-[var(--brand-cream)] rounded-lg border border-[color:var(--brand-storm)]/25">
+                  <div className="text-2xl font-medium text-[color:var(--brand-midnight)]">
+                    {formatFileSize(compressedSize)}
+                  </div>
+                  <div className="text-sm text-[color:var(--brand-storm)]">
+                    Compressed size
+                  </div>
                 </div>
-                <div className="col-span-2">
-                  <span className="text-gray-600">Size reduction:</span>
-                  <span className="ml-2 font-medium text-green-600">
-                    {((originalSize - compressedSize) / originalSize * 100).toFixed(1)}%
-                  </span>
+                <div className="text-center p-4 bg-[var(--brand-cream)] rounded-lg border border-[color:var(--brand-storm)]/25">
+                  <div className="text-2xl font-medium text-[color:var(--brand-midnight)]">
+                    {(
+                      ((originalSize - compressedSize) / originalSize) *
+                      100
+                    ).toFixed(1)}
+                    %
+                  </div>
+                  <div className="text-sm text-[color:var(--brand-storm)]">
+                    Size reduction
+                  </div>
                 </div>
               </div>
             </div>
@@ -283,49 +352,59 @@ export default function CompressPdf() {
 
           {/* Message */}
           {message && (
-            <div className={`mt-4 p-3 rounded-lg ${
-              message.includes('successfully') 
-                ? 'bg-green-100 text-green-700' 
-                : 'bg-red-100 text-red-700'
-            }`}>
+            <div
+              className={`mt-6 p-4 rounded-lg text-center border ${
+                message.includes("successfully")
+                  ? "bg-[var(--brand-cloud)] text-[color:var(--brand-midnight)] border-[color:var(--brand-storm)]/25"
+                  : "bg-[var(--brand-cloud)] text-[color:var(--brand-midnight)] border-[color:var(--brand-storm)]/25"
+              }`}
+            >
               {message}
             </div>
           )}
 
           {/* Compress/Download Button */}
-          <div className="mt-6 space-y-3">
+          <div className="mt-8 space-y-4">
             <button
               onClick={handleButtonClick}
               disabled={!file || isUploading}
-              className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
+              className={`w-full py-4 px-8 rounded-lg font-medium text-lg transition-colors ${
                 !file || isUploading
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : isCompressed
-                  ? 'bg-green-600 text-white hover:bg-green-700'
-                  : 'bg-purple-600 text-white hover:bg-purple-700'
+                  ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                  : "bg-[var(--brand-forest)] text-[var(--brand-cloud)]"
               }`}
             >
               {isUploading ? (
-                <div className="flex items-center justify-center space-x-2">
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <div className="flex items-center justify-center space-x-3">
+                  <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   <span>Compressing...</span>
                 </div>
               ) : isCompressed ? (
-                <div className="flex items-center justify-center space-x-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <div className="flex items-center justify-center space-x-3">
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
                   </svg>
                   <span>Download Compressed PDF</span>
                 </div>
               ) : (
-                'Compress PDF'
+                "Compress PDF"
               )}
             </button>
-            
+
             {isCompressed && (
               <button
                 onClick={startOver}
-                className="w-full py-2 px-6 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+                className="w-full py-3 px-8 rounded-lg font-medium bg-[var(--brand-cloud)] text-[color:var(--brand-midnight)] border border-[color:var(--brand-storm)]/25"
               >
                 Start Over
               </button>
@@ -334,22 +413,88 @@ export default function CompressPdf() {
         </div>
 
         {/* Instructions */}
-        <div className="mt-8 bg-white rounded-xl shadow-lg p-6">
-          <h3 className="text-lg font-medium text-gray-700 mb-4">How to use:</h3>
-          <ol className="list-decimal list-inside space-y-2 text-gray-600">
-            <li>Upload a PDF file by dragging and dropping or clicking to browse</li>
-            <li>Select the compression quality (Low, Medium, or High)</li>
-            <li>Click the "Compress PDF" button</li>
-            <li>Download your compressed PDF file</li>
-          </ol>
-          
-          <div className="mt-4 p-4 bg-blue-50 rounded-lg">
-            <h4 className="font-medium text-blue-800 mb-2">Compression Quality Guide:</h4>
-            <ul className="text-sm text-blue-700 space-y-1">
-              <li><strong>Low:</strong> Maximum compression, smallest file size</li>
-              <li><strong>Medium:</strong> Balanced compression, good quality and size</li>
-              <li><strong>High:</strong> Minimum compression, best quality</li>
-            </ul>
+        <div className="mt-12 bg-[var(--brand-cream)] rounded-2xl p-8 border border-[color:var(--brand-storm)]/25">
+          <h3 className="text-2xl font-semibold text-[color:var(--brand-midnight)] mb-6">
+            How to use:
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <ol className="space-y-3 text-[color:var(--brand-storm)]">
+                <li className="flex items-start space-x-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-[var(--brand-sky)] text-[color:var(--brand-midnight)] rounded-full flex items-center justify-center text-sm font-medium">
+                    1
+                  </span>
+                  <span>
+                    Upload a PDF file by dragging and dropping or clicking to
+                    browse
+                  </span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-[var(--brand-sky)] text-[color:var(--brand-midnight)] rounded-full flex items-center justify-center text-sm font-medium">
+                    2
+                  </span>
+                  <span>
+                    Select the compression quality (Low, Medium, or High)
+                  </span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-[var(--brand-sky)] text-[color:var(--brand-midnight)] rounded-full flex items-center justify-center text-sm font-medium">
+                    3
+                  </span>
+                  <span>Click the "Compress PDF" button</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-[var(--brand-sky)] text-[color:var(--brand-midnight)] rounded-full flex items-center justify-center text-sm font-medium">
+                    4
+                  </span>
+                  <span>Download your compressed PDF file</span>
+                </li>
+              </ol>
+            </div>
+
+            <div className="bg-[var(--brand-cloud)] rounded-xl p-6 border border-[color:var(--brand-storm)]/25">
+              <h4 className="font-semibold text-[color:var(--brand-midnight)] mb-4 text-lg">
+                Compression Quality Guide:
+              </h4>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <div className="w-3 h-3 bg-[var(--brand-storm)] rounded-full"></div>
+                  <div>
+                    <span className="font-medium text-[color:var(--brand-midnight)]">
+                      Low:
+                    </span>
+                    <span className="text-[color:var(--brand-storm)] text-sm">
+                      {" "}
+                      Maximum compression, smallest file size
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-3 h-3 bg-[var(--brand-storm)] rounded-full"></div>
+                  <div>
+                    <span className="font-medium text-[color:var(--brand-midnight)]">
+                      Medium:
+                    </span>
+                    <span className="text-[color:var(--brand-storm)] text-sm">
+                      {" "}
+                      Balanced compression, good quality and size
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-3 h-3 bg-[var(--brand-storm)] rounded-full"></div>
+                  <div>
+                    <span className="font-medium text-[color:var(--brand-midnight)]">
+                      High:
+                    </span>
+                    <span className="text-[color:var(--brand-storm)] text-sm">
+                      {" "}
+                      Minimum compression, best quality
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
