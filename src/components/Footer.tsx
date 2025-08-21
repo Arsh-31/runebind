@@ -80,15 +80,10 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-[var(--brand-cloud)]/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-[var(--brand-cloud)]/10 mt-12 pt-8 flex flex-col md:flex-row justify-center items-center">
           <p className="text-[var(--brand-sky)] text-sm mb-4 md:mb-0">
             © {new Date().getFullYear()} RuneBind. All rights reserved.
           </p>
-          <div className="flex items-center space-x-2 text-gray-400 text-sm">
-            <span>Made with</span>
-            <Heart className="h-4 w-4 text-[var(--brand-sky)]" />
-            <span>for the community</span>
-          </div>
         </div>
       </div>
     </footer>
