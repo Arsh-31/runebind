@@ -1,44 +1,40 @@
 // src/components/HeroSection.jsx
 import React from "react";
+import GlowingDot from "./Star";
 
 const Hero = () => {
   return (
-    <section className="relative py-20 md:py-32 bg-[var(--brand-cream)]">
+    <section className="relative py-15 md:py-22 bg-[var(--background)]">
       {/* Main content */}
       <div className="relative z-10 container mx-auto px-4 text-center max-w-6xl">
         {/* Eyebrow */}
-        <div className="inline-flex items-center px-3 py-1 rounded-full bg-[var(--brand-cloud)] border border-[var(--brand-storm)] mb-8">
-          <span className="w-1.5 h-1.5 bg-[var(--brand-forest)] rounded-full mr-2"></span>
-          <span className="text-sm font-medium text-[var(--brand-storm)]">
-            Professional PDF tools
-          </span>
+        <div className="inline-flex items-center px-3 py-1 rounded-full border border-[#4f4f4f] mb-8">
+          <span className="w-1.5 h-1.5 bg-[#ffffff] rounded-full mr-2"></span>
+          <span className="text-sm font-medium">Professional PDF tools</span>
         </div>
 
         {/* Main heading */}
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-6 text-[var(--brand-midnight)]">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-6">
           Effortless PDF Management
         </h1>
 
         {/* Subtitle */}
-        <p className="mx-auto mt-6 max-w-3xl text-xl md:text-2xl text-[var(--brand-storm)] leading-relaxed">
+        <p className="mx-auto mt-6 max-w-3xl text-xl md:text-xl text-[#adadad] leading-relaxed">
           A sober, reliable suite of PDF tools built for professionals. No
-          clutter, no noise — just the essentials.
+          clutter, no noise - just the essentials.
         </p>
 
         {/* CTA buttons */}
         <div className="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-4">
-          <button className="px-8 py-3 bg-[var(--brand-forest)] text-[var(--brand-cloud)] font-medium rounded-md">
+          <button className="px-8 py-3 bg-[#fff] text-[#141414] font-bold rounded-full">
             Get Started
           </button>
-          {/* <button className="px-8 py-3 border border-[var(--brand-storm)] text-[var(--brand-midnight)] font-medium rounded-lg bg-[var(--brand-cloud)]">
-            Learn More
-          </button> */}
         </div>
 
         {/* Feature highlights */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="flex flex-col items-center p-6 bg-[var(--brand-cloud)] rounded-md border border-[var(--brand-storm)]">
-            <div className="w-12 h-12 bg-[var(--brand-sky)] rounded-sm flex items-center justify-center mb-4 text-[var(--brand-midnight)]">
+          <div className="flex flex-col items-center p-6 bg-[var(--card)] rounded-2xl">
+            <div className="w-12 h-12 bg-[#4f4f4f] rounded-xl flex items-center justify-center mb-4">
               <svg
                 className="w-6 h-6 text-white"
                 fill="none"
@@ -53,16 +49,14 @@ const Hero = () => {
                 />
               </svg>
             </div>
-            <h3 className="font-medium text-[var(--brand-midnight)] mb-2">
-              Fast Processing
-            </h3>
-            <p className="text-sm text-[var(--brand-storm)] text-center">
+            <h3 className="font-medium mb-2">Fast Processing</h3>
+            <p className="text-sm text-[#adadad] text-center">
               Process PDFs in seconds
             </p>
           </div>
 
-          <div className="flex flex-col items-center p-6 bg-[var(--brand-cloud)] rounded-md border border-[var(--brand-storm)]">
-            <div className="w-12 h-12 bg-[var(--brand-forest)] rounded-sm flex items-center justify-center mb-4 text-[var(--brand-cloud)]">
+          <div className="flex flex-col items-center p-6 bg-[var(--card)] rounded-2xl">
+            <div className="w-12 h-12 bg-[#4f4f4f] rounded-xl flex items-center justify-center mb-4">
               <svg
                 className="w-6 h-6 text-white"
                 fill="none"
@@ -77,16 +71,14 @@ const Hero = () => {
                 />
               </svg>
             </div>
-            <h3 className="font-medium text-[var(--brand-midnight)] mb-2">
-              Privacy First
-            </h3>
-            <p className="text-sm text-[var(--brand-storm)] text-center">
+            <h3 className="font-medium mb-2">Privacy First</h3>
+            <p className="text-sm text-[#adadad] text-center">
               Files auto-delete after 1 hour
             </p>
           </div>
 
-          <div className="flex flex-col items-center p-6 bg-[var(--brand-cloud)] rounded-md border border-[var(--brand-storm)]">
-            <div className="w-12 h-12 bg-[var(--brand-sky)] rounded-sm flex items-center justify-center mb-4 text-[var(--brand-midnight)]">
+          <div className="flex flex-col items-center p-6 bg-[var(--card)] rounded-2xl">
+            <div className="w-12 h-12 bg-[#4f4f4f] rounded-xl flex items-center justify-center mb-4">
               <svg
                 className="w-6 h-6 text-white"
                 fill="none"
@@ -101,10 +93,8 @@ const Hero = () => {
                 />
               </svg>
             </div>
-            <h3 className="font-medium text-[var(--brand-midnight)] mb-2">
-              Works Everywhere
-            </h3>
-            <p className="text-sm text-[var(--brand-storm)] text-center">
+            <h3 className="font-medium mb-2">Works Everywhere</h3>
+            <p className="text-sm text-[#adadad] text-center">
               Seamless on all devices
             </p>
           </div>

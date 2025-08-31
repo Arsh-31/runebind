@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef } from "react";
-import Image from "next/image";
 
 export default function Merge() {
   const [files, setFiles] = useState<File[]>([]);
@@ -108,21 +107,19 @@ export default function Merge() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--brand-cloud)] p-8">
+    <div className="min-h-screen bg-[var(--background)] py-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-semibold text-[color:var(--brand-midnight)] mb-4">
-            PDF Merger
-          </h1>
-          <p className="text-[color:var(--brand-storm)] text-lg">
+          <h1 className="text-4xl font-semibold mb-4">PDF Merger</h1>
+          <p className=" text-lg">
             Upload multiple PDF files and merge them into a single document
           </p>
         </div>
 
-        <div className="bg-[var(--brand-cream)] rounded-xl p-8 border border-[var(--brand-storm)]">
+        <div className="bg-[var(--card)] rounded-2xl p-8">
           {/* File Upload Area */}
           <div
-            className="border-2 border-dashed border-[var(--brand-storm)] rounded-lg p-8 text-center hover:bg-[var(--brand-cloud)]/60 transition-colors cursor-pointer"
+            className="border-2 border-dashed border-[#4f4f4f] rounded-xl p-8 text-center hover:bg-[var(--brand-cloud)]/60 transition-colors cursor-pointer"
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onClick={() => fileInputRef.current?.click()}
@@ -166,18 +163,18 @@ export default function Merge() {
           {/* Selected Files */}
           {files.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-lg font-medium text-[color:var(--brand-midnight)] mb-4">
+              <h3 className="text-lg font-medium mb-4">
                 Selected Files ({files.length})
               </h3>
               <div className="space-y-2">
                 {files.map((file, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between bg-[var(--brand-cloud)] rounded-lg p-3 border border-[var(--brand-storm)]"
+                    className="flex items-center justify-between rounded-lg p-3 border border-[#4f4f4f]"
                   >
                     <div className="flex items-center space-x-3">
                       <svg
-                        className="w-5 h-5 text-[color:var(--brand-midnight)]"
+                        className="w-5 h-5"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -187,16 +184,14 @@ export default function Merge() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <span className="text-sm font-medium text-[color:var(--brand-midnight)]">
-                        {file.name}
-                      </span>
+                      <span className="text-sm font-medium">{file.name}</span>
                       <span className="text-xs text-[color:var(--brand-storm)]">
                         ({(file.size / 1024 / 1024).toFixed(2)} MB)
                       </span>
                     </div>
                     <button
                       onClick={() => removeFile(index)}
-                      className="text-[var(--brand-midnight)] hover:opacity-80 transition-opacity"
+                      className=" hover:opacity-80 transition-opacity"
                     >
                       <svg
                         className="w-5 h-5"
@@ -223,8 +218,8 @@ export default function Merge() {
             <div
               className={`mt-4 p-3 rounded-lg ${
                 message.includes("successfully")
-                  ? "bg-[var(--brand-cloud)] text-[var(--brand-midnight)] border border-[var(--brand-storm)]"
-                  : "bg-[var(--brand-cloud)] text-[var(--brand-midnight)] border border-[var(--brand-storm)]"
+                  ? "border border-[#4f4f4f]"
+                  : " border border-[#4f4f4f]"
               }`}
             >
               {message}
@@ -236,10 +231,10 @@ export default function Merge() {
             <button
               onClick={handleButtonClick}
               disabled={files.length < 2 || isUploading}
-              className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
+              className={`w-full py-3 px-6 rounded-xl font-medium transition-colors ${
                 files.length < 2 || isUploading
-                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-[var(--brand-forest)] text-[var(--brand-cloud)]"
+                  ? "bg-[#ffffff] text-[#141414] cursor-not-allowed"
+                  : "bg-[#ffffff] text-[#141414]"
               }`}
             >
               {isUploading ? (
@@ -272,7 +267,7 @@ export default function Merge() {
             {isMerged && (
               <button
                 onClick={startOver}
-                className="w-full py-2 px-6 rounded-lg font-medium bg-[var(--brand-cloud)] text-[var(--brand-midnight)] border border-[var(--brand-storm)]"
+                className="w-full py-2 px-6 rounded-lg font-medium"
               >
                 Start Over
               </button>
@@ -281,11 +276,11 @@ export default function Merge() {
         </div>
 
         {/* Instructions */}
-        <div className="mt-8 bg-[var(--brand-cream)] rounded-xl p-6 border border-[var(--brand-storm)]">
+        <div className="mt-8 bg-[var(--card)] rounded-xl p-6">
           <h3 className="text-lg font-medium text-[color:var(--brand-midnight)] mb-4">
             How to use:
           </h3>
-          <ol className="list-decimal list-inside space-y-2 text-gray-600">
+          <ol className="list-decimal list-inside space-y-2">
             <li>Drag and drop PDF files or click to browse and select files</li>
             <li>Select at least 2 PDF files to merge</li>
             <li>Click the "Merge PDFs" button</li>

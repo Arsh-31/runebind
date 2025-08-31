@@ -2,29 +2,24 @@
 
 :root {
   /* Vintage palette */
-  --brand-forest: #5E6C5B;
-  --brand-cream: #F4EFE6;
-  --brand-cloud: #FEFCF6;
-  --brand-sky: #D6E0E2;
-  --brand-storm: #686867;
-  --brand-midnight: #162A2C;
+  --secondary: #cbc0b2;
+  --card: #222222;
 
-  --background: #FEFCF6;
-  --foreground: #162A2C;
+  --background: #ffffff;
+  --foreground: #e0e0f0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     /* Keep the same soft contrast for dark preference to maintain vintage feel */
-    --background: #F4EFE6;
-    --foreground: #162A2C;
+    --background: #141414;
+    --foreground: #ffffff;
   }
 }
 

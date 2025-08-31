@@ -25,7 +25,7 @@ interface IconPlaceholderProps {
 }
 
 const IconPlaceholder: React.FC<IconPlaceholderProps> = ({ children }) => (
-  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--brand-sky)] text-[var(--brand-midnight)]">
+  <div className="flex h-12 w-12 items-center justify-center rounded-lg">
     {children}
   </div>
 );
@@ -86,14 +86,14 @@ const FeatureGrid: React.FC = () => {
   };
 
   return (
-    <section className="py-20 md:py-32 bg-[var(--brand-cloud)]">
+    <section className="py-15 md:py-22 bg-[var(--brand-cloud)]">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-[color:var(--brand-midnight)] mb-6">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
             Essential PDF Tools
           </h2>
-          <p className="text-xl text-[color:var(--brand-storm)] max-w-3xl mx-auto">
+          <p className="text-lg text-[#adadad]  max-w-3xl mx-auto">
             Everything you need to work with PDFs professionally. Fast, secure,
             and designed for productivity.
           </p>
@@ -104,17 +104,15 @@ const FeatureGrid: React.FC = () => {
           {features.map((feature: Feature, index: number) => (
             <div
               key={feature.name}
-              className="group relative bg-[var(--brand-cream)] rounded-md p-8 border border-[var(--brand-storm)] cursor-pointer"
+              className="group relative bg-[var(--card)] rounded-2xl p-8 cursor-pointer"
               onClick={() => handleFeatureClick(feature.route)}
             >
               <div className="flex gap-4 items-center mb-4">
                 {/* Icon */}
                 <div
-                  className={`relative z-10 w-10 h-10 bg-[var(--brand-sky)] rounded-sm flex items-center justify-center`}
+                  className={`relative z-10 w-10 h-10 bg-[#4f4f4f] rounded-xl flex items-center justify-center`}
                 >
-                  <div className="text-[color:var(--brand-midnight)]">
-                    {feature.icon}
-                  </div>
+                  <div className="">{feature.icon}</div>
                 </div>
 
                 {/* Content */}
@@ -131,14 +129,14 @@ const FeatureGrid: React.FC = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-16">
+        {/* <div className="text-center mt-16">
           <p className="text-[color:var(--brand-storm)] mb-6">
             Ready to streamline your workflow?
           </p>
           <button className="px-8 py-3 bg-[var(--brand-forest)] text-[var(--brand-cloud)] font-medium rounded-lg">
             Explore All Tools
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

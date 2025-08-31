@@ -35,7 +35,7 @@ const steps: Step[] = [
   },
 ];
 const benefits = [
-  "Privacy-first approach - files auto-delete after 1 hour",
+  "Privacy-first approach - files auto-delete instantly",
   "No registration required",
   "Fast processing with progress indicators",
   "Mobile responsive design",
@@ -46,13 +46,13 @@ const benefits = [
 const HowToUseSection: React.FC = () => {
   return (
     <div>
-      <section className="py-20 md:py-32 bg-[var(--brand-cream)]">
+      <section className="py-15 md:py-22">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-[var(--brand-midnight)] mb-6">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
               Simple Steps to Get Started
             </h2>
-            <p className="text-xl text-[var(--brand-storm)] max-w-3xl mx-auto">
+            <p className="text-lg text-[#adadad] max-w-3xl mx-auto">
               Get up and running with our PDF tools in just a few simple steps.
               No complex setup required.
             </p>
@@ -66,15 +66,13 @@ const HowToUseSection: React.FC = () => {
                   className="relative flex flex-col items-center text-center group"
                 >
                   {/* Step Number Circle - positioned to overlap the box */}
-                  <div className="relative z-20 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--brand-forest)] text-xl font-semibold text-[var(--brand-cloud)] mb-0">
+                  <div className="relative z-20 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#4f4f4f] text-xl font-semibold mb-0">
                     {item.step}
                   </div>
 
                   {/* Content Card - positioned below the circle with negative margin to create overlap */}
-                  <div className="relative z-10 -mt-6 flex-grow rounded-md bg-[var(--brand-cloud)] p-8 pt-12 border border-[var(--brand-storm)]">
-                    <h3 className="text-xl font-semibold text-[var(--brand-midnight)] mb-3">
-                      {item.title}
-                    </h3>
+                  <div className="relative z-10 -mt-6 flex-grow rounded-2xl bg-[var(--card)] p-8 pt-12">
+                    <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
                     <p className="text-[var(--brand-storm)] leading-relaxed">
                       {item.description}
                     </p>
@@ -86,7 +84,7 @@ const HowToUseSection: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-[var(--brand-cloud)]">
+      <section className="py-15">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -96,36 +94,34 @@ const HowToUseSection: React.FC = () => {
               <div className="space-y-6">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start space-x-4 group">
-                    <div className="p-2 bg-[var(--brand-sky)] rounded-md">
-                      <Check className="h-5 w-5 text-[var(--brand-midnight)]" />
+                    <div className="p-2 bg-[#4f4f4f] rounded-xl">
+                      <Check className="h-5 w-5" />
                     </div>
-                    <span className="text-[var(--brand-storm)] text-lg leading-relaxed">
-                      {benefit}
-                    </span>
+                    <span className=" text-lg leading-relaxed">{benefit}</span>
                   </div>
                 ))}
               </div>
             </div>
             <div className="relative">
-              <div className="bg-[var(--brand-cream)] rounded-md p-10 border border-[var(--brand-storm)]">
+              <div className="bg-[var(--card)] rounded-2xl p-10 ">
                 <div className="flex items-center space-x-4 mb-8">
-                  <div className="p-3 bg-[var(--brand-forest)] rounded-sm">
+                  <div className="p-3 bg-[#4f4f4f] rounded-xl">
                     <Shield className="h-8 w-8 text-[var(--brand-cloud)]" />
                   </div>
                   <h3 className="text-3xl font-semibold text-[var(--brand-midnight)]">
                     Privacy First
                   </h3>
                 </div>
-                <p className="text-[var(--brand-storm)] mb-8 text-lg leading-relaxed">
+                <p className="mb-8 text-lg leading-relaxed">
                   Your files are processed securely and automatically deleted
-                  after 1 hour. We never store or access your documents.
+                  instantly. We never store or access your documents.
                 </p>
-                <div className="bg-[var(--brand-cloud)] border border-[var(--brand-storm)] rounded-sm p-6">
+                <div className="bg-[var(--brand-cloud)] border border-[#4f4f4f] rounded-xl p-6">
                   <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-[var(--brand-forest)] rounded-sm">
-                      <Check className="h-5 w-5 text-[var(--brand-cloud)]" />
+                    <div className="p-2 bg-[#4f4f4f] rounded-sm">
+                      <Check className="h-5 w-5" />
                     </div>
-                    <span className="text-[var(--brand-midnight)] font-medium text-lg">
+                    <span className=" font-medium text-lg">
                       100% Secure & Private
                     </span>
                   </div>

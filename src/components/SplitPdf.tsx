@@ -146,29 +146,27 @@ export default function SplitPdf() {
   };
 
   return (
-    <div className="p-8 bg-[var(--brand-cloud)]">
+    <div className="py-8 bg-[var(--background)]">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-semibold text-[color:var(--brand-midnight)] mb-4">
-            PDF Splitter
-          </h1>
+          <h1 className="text-4xl font-semibold  mb-4">PDF Splitter</h1>
           <p className="text-[color:var(--brand-storm)] text-lg">
             Upload a PDF file and extract specific pages
           </p>
         </div>
 
-        <div className="bg-[var(--brand-cream)] rounded-xl p-8 border border-[var(--brand-storm)]">
+        <div className="bg-[var(--card)] rounded-xl p-8 ">
           {/* File Upload Area */}
           <div
-            className="border-2 border-dashed border-[var(--brand-storm)] rounded-lg p-8 text-center hover:bg-[var(--brand-cloud)]/60 transition-colors cursor-pointer"
+            className="border-2 border-dashed border-[#4f4f4f] rounded-lg p-8 text-center transition-colors cursor-pointer"
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onClick={() => fileInputRef.current?.click()}
           >
             <div className="space-y-4">
-              <div className="mx-auto w-16 h-16 bg-[var(--brand-sky)] rounded-full flex items-center justify-center">
+              <div className="mx-auto w-16 h-16  rounded-full flex items-center justify-center">
                 <svg
-                  className="w-8 h-8 text-[color:var(--brand-midnight)]"
+                  className="w-8 h-8"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -182,10 +180,10 @@ export default function SplitPdf() {
                 </svg>
               </div>
               <div>
-                <p className="text-lg font-medium text-[color:var(--brand-midnight)]">
+                <p className="text-lg font-medium ">
                   Drop a PDF file here or click to browse
                 </p>
-                <p className="text-sm text-[color:var(--brand-storm)] mt-2">
+                <p className="text-sm ">
                   Select a PDF file to split (max 50MB)
                 </p>
               </div>
@@ -203,13 +201,11 @@ export default function SplitPdf() {
           {/* Selected File */}
           {file && (
             <div className="mt-6">
-              <h3 className="text-lg font-medium text-[color:var(--brand-midnight)] mb-4">
-                Selected File
-              </h3>
-              <div className="flex items-center justify-between bg-[var(--brand-cloud)] rounded-lg p-3 border border-[var(--brand-storm)]">
+              <h3 className="text-lg font-medium  mb-4">Selected File</h3>
+              <div className="flex items-center justify-between rounded-lg p-3 border border-[#4f4f4f]">
                 <div className="flex items-center space-x-3">
                   <svg
-                    className="w-5 h-5 text-[color:var(--brand-midnight)]"
+                    className="w-5 h-5 t"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -219,21 +215,17 @@ export default function SplitPdf() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-sm font-medium text-[color:var(--brand-midnight)]">
-                    {file.name}
-                  </span>
-                  <span className="text-xs text-[var(--brand-storm)]">
+                  <span className="text-sm font-medium ">{file.name}</span>
+                  <span className="text-xs ">
                     ({(file.size / 1024 / 1024).toFixed(2)} MB)
                   </span>
                   {totalPages && (
-                    <span className="text-xs text-[var(--brand-midnight)]">
-                      ~{totalPages} pages
-                    </span>
+                    <span className="text-xs ">~{totalPages} pages</span>
                   )}
                 </div>
                 <button
                   onClick={startOver}
-                  className="text-[var(--brand-midnight)] hover:opacity-80 transition-opacity"
+                  className=" hover:opacity-80 transition-opacity"
                 >
                   <svg
                     className="w-5 h-5"
@@ -256,12 +248,12 @@ export default function SplitPdf() {
           {/* Page Range Input */}
           {file && (
             <div className="mt-6">
-              <h3 className="text-lg font-medium text-[color:var(--brand-midnight)] mb-4">
+              <h3 className="text-lg font-medium  mb-4">
                 Select Pages to Extract
               </h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-[color:var(--brand-midnight)] mb-2">
+                  <label className="block text-sm font-medium  mb-2">
                     Page Ranges (e.g., 1,3,5-7,10)
                   </label>
                   <input
@@ -269,32 +261,30 @@ export default function SplitPdf() {
                     value={pageRanges}
                     onChange={(e) => setPageRanges(e.target.value)}
                     placeholder="Enter page ranges..."
-                    className="w-full px-3 py-2 border border-[var(--brand-storm)] rounded-lg focus:outline-none"
+                    className="w-full px-3 py-2 border border-[#4f4f4f] rounded-lg focus:outline-none"
                   />
                 </div>
 
                 {/* Quick Selection Buttons */}
                 {totalPages && (
                   <div className="space-y-2">
-                    <p className="text-sm text-[var(--brand-storm)]">
-                      Quick selection:
-                    </p>
+                    <p className="text-sm ">Quick selection:</p>
                     <div className="flex flex-wrap gap-2">
                       <button
                         onClick={() => addPageRange("1")}
-                        className="px-3 py-1 text-xs bg-[var(--brand-sky)] text-[var(--brand-midnight)] rounded"
+                        className="px-3 py-1 text-xs bg-[#4f4f4f] rounded-lg"
                       >
                         First page
                       </button>
                       <button
                         onClick={() => addPageRange(`${totalPages}`)}
-                        className="px-3 py-1 text-xs bg-[var(--brand-sky)] text-[var(--brand-midnight)] rounded"
+                        className="px-3 py-1 text-xs bg-[#4f4f4f] rounded-lg"
                       >
                         Last page
                       </button>
                       <button
                         onClick={() => addPageRange(`1-${totalPages}`)}
-                        className="px-3 py-1 text-xs bg-[var(--brand-sky)] text-[var(--brand-midnight)] rounded"
+                        className="px-3 py-1 text-xs bg-[#4f4f4f] rounded-lg"
                       >
                         All pages
                       </button>
@@ -302,7 +292,7 @@ export default function SplitPdf() {
                         onClick={() =>
                           addPageRange(`1-${Math.floor(totalPages / 2)}`)
                         }
-                        className="px-3 py-1 text-xs bg-[var(--brand-sky)] text-[var(--brand-midnight)] rounded"
+                        className="px-3 py-1 text-xs bg-[#4f4f4f] rounded-lg"
                       >
                         First half
                       </button>
@@ -312,7 +302,7 @@ export default function SplitPdf() {
                             `${Math.floor(totalPages / 2) + 1}-${totalPages}`
                           )
                         }
-                        className="px-3 py-1 text-xs bg-[var(--brand-sky)] text-[var(--brand-midnight)] rounded"
+                        className="px-3 py-1 text-xs bg-[#4f4f4f] rounded-lg"
                       >
                         Second half
                       </button>
@@ -328,8 +318,8 @@ export default function SplitPdf() {
             <div
               className={`mt-4 p-3 rounded-lg ${
                 message.includes("successfully")
-                  ? "bg-[var(--brand-cloud)] text-[var(--brand-midnight)] border border-[var(--brand-storm)]"
-                  : "bg-[var(--brand-cloud)] text-[var(--brand-midnight)] border border-[var(--brand-storm)]"
+                  ? " border-[color:#4f4f4f]"
+                  : "border-[color:#4f4f4f]"
               }`}
             >
               {message}
@@ -341,10 +331,10 @@ export default function SplitPdf() {
             <button
               onClick={handleButtonClick}
               disabled={!file || !pageRanges.trim() || isUploading}
-              className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
+              className={`w-full py-3 px-6 rounded-xl font-medium transition-colors ${
                 !file || !pageRanges.trim() || isUploading
                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-[var(--brand-forest)] text-[var(--brand-cloud)]"
+                  : "bg-[#fff] text-[#4f4f4f]"
               }`}
             >
               {isUploading ? (
@@ -377,7 +367,7 @@ export default function SplitPdf() {
             {isSplit && (
               <button
                 onClick={startOver}
-                className="w-full py-2 px-6 rounded-lg font-medium bg-[var(--brand-cloud)] text-[var(--brand-midnight)] border border-[var(--brand-storm)]"
+                className="w-full py-2 px-6 rounded-lg font-medium  border border-[#4f4f4f]"
               >
                 Start Over
               </button>
@@ -386,10 +376,8 @@ export default function SplitPdf() {
         </div>
 
         {/* Instructions */}
-        <div className="mt-12 bg-[var(--brand-cream)] rounded-2xl p-8 border border-[color:var(--brand-storm)]/25">
-          <h3 className="text-2xl font-semibold text-[color:var(--brand-midnight)] mb-6">
-            How to use:
-          </h3>
+        <div className="mt-12 bg-[var(--card)] rounded-2xl p-8 ">
+          <h3 className="text-2xl font-semibold  mb-6">How to use:</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <ol className="space-y-3 text-[color:var(--brand-storm)]">
@@ -434,54 +422,54 @@ export default function SplitPdf() {
               </ol>
             </div>
 
-            <div className="bg-[var(--brand-cloud)] rounded-xl p-6 border border-[color:var(--brand-storm)]/25">
-              <h4 className="font-semibold text-[color:var(--brand-midnight)] mb-4 text-lg">
+            <div className=" rounded-xl p-6 bg-[#4f4f4f]">
+              <h4 className="font-semibold  mb-4 text-lg">
                 Page Range Examples:
               </h4>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-[var(--brand-storm)] rounded-full"></div>
+                  <div className="w-3 h-3 bg-[#fff] rounded-full"></div>
                   <div>
-                    <span className="font-medium text-[color:var(--brand-midnight)]">
+                    <span className="font-medium ">
                       <code>1,3,5</code>
                     </span>
-                    <span className="text-[color:var(--brand-storm)] text-sm">
+                    <span className=" text-sm">
                       {" "}
                       - Extract pages 1, 3, and 5
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-[var(--brand-storm)] rounded-full"></div>
+                  <div className="w-3 h-3 bg-[#fff] rounded-full"></div>
                   <div>
-                    <span className="font-medium text-[color:var(--brand-midnight)]">
+                    <span className="font-medium ">
                       <code>1-5</code>
                     </span>
-                    <span className="text-[color:var(--brand-storm)] text-sm">
+                    <span className=" text-sm">
                       {" "}
                       - Extract pages 1 through 5
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-[var(--brand-storm)] rounded-full"></div>
+                  <div className="w-3 h-3 bg-[#fff] rounded-full"></div>
                   <div>
-                    <span className="font-medium text-[color:var(--brand-midnight)]">
+                    <span className="font-medium ">
                       <code>1,3,5-7,10</code>
                     </span>
-                    <span className="text-[color:var(--brand-storm)] text-sm">
+                    <span className=" text-sm">
                       {" "}
                       - Extract pages 1, 3, 5-7, and 10
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-[var(--brand-storm)] rounded-full"></div>
+                  <div className="w-3 h-3 bg-[#fff] rounded-full"></div>
                   <div>
-                    <span className="font-medium text-[color:var(--brand-midnight)]">
+                    <span className="font-medium ">
                       <code>1-3,7-9</code>
                     </span>
-                    <span className="text-[color:var(--brand-storm)] text-sm">
+                    <span className=" text-sm">
                       {" "}
                       - Extract pages 1-3 and 7-9
                     </span>

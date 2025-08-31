@@ -135,24 +135,22 @@ export default function CompressPdf() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--brand-cloud)] p-8">
+    <div className="min-h-screen bg-[var(--background)] py-8">
       <div className="max-w-4xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-semibold text-[color:var(--brand-midnight)] mb-4">
-            PDF Compressor
-          </h1>
-          <p className="text-xl text-[color:var(--brand-storm)] max-w-2xl mx-auto">
+          <h1 className="text-4xl font-semibold mb-4">PDF Compressor</h1>
+          <p className="text-xl max-w-2xl mx-auto">
             Reduce PDF file size without losing quality. Fast, secure, and
             completely free.
           </p>
         </div>
 
         {/* Main Content Card */}
-        <div className="bg-[var(--brand-cream)] rounded-2xl p-8 md:p-12 border border-[var(--brand-storm)]">
+        <div className="bg-[var(--card)] rounded-2xl p-8 md:p-12">
           {/* File Upload Area */}
           <div
-            className="border-2 border-dashed border-[var(--brand-storm)] rounded-xl p-12 text-center hover:bg-[var(--brand-cloud)]/60 transition-colors cursor-pointer group"
+            className="border-2 border-dashed border-[#4f4f4f] rounded-xl p-12 text-center hover:bg-[var(--brand-cloud)]/60 transition-colors cursor-pointer group"
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onClick={() => fileInputRef.current?.click()}
@@ -160,7 +158,7 @@ export default function CompressPdf() {
             <div className="space-y-6">
               <div className="mx-auto w-20 h-20 bg-[var(--brand-sky)] rounded-full flex items-center justify-center">
                 <svg
-                  className="w-10 h-10 text-[color:var(--brand-midnight)]"
+                  className="w-10 h-10 "
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -174,12 +172,10 @@ export default function CompressPdf() {
                 </svg>
               </div>
               <div>
-                <p className="text-xl font-medium text-[color:var(--brand-midnight)] mb-2">
+                <p className="text-xl font-medium  mb-2">
                   Drop a PDF file here or click to browse
                 </p>
-                <p className="text-[color:var(--brand-storm)]">
-                  Select a PDF file to compress (max 50MB)
-                </p>
+                <p className="">Select a PDF file to compress (max 50MB)</p>
               </div>
             </div>
           </div>
@@ -195,14 +191,12 @@ export default function CompressPdf() {
           {/* Selected File */}
           {file && (
             <div className="mt-8">
-              <h3 className="text-xl font-semibold text-[color:var(--brand-midnight)] mb-4">
-                Selected File
-              </h3>
-              <div className="flex items-center justify-between bg-[var(--brand-cloud)] rounded-xl p-4 border border-[var(--brand-storm)]">
+              <h3 className="text-xl font-semibold mb-4">Selected File</h3>
+              <div className="flex items-center justify-between rounded-xl p-4 border border-[#4f4f4f]">
                 <div className="flex items-center space-x-4">
-                  <div className="p-2 bg-[var(--brand-forest)] rounded-lg">
+                  <div className="p-2rounded-lg">
                     <svg
-                      className="w-6 h-6 text-[var(--brand-cloud)]"
+                      className="w-6 h-6 "
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -214,18 +208,11 @@ export default function CompressPdf() {
                     </svg>
                   </div>
                   <div>
-                    <span className="text-lg font-medium text-[color:var(--brand-midnight)]">
-                      {file.name}
-                    </span>
-                    <div className="text-sm text-[color:var(--brand-storm)]">
-                      {formatFileSize(file.size)}
-                    </div>
+                    <span className="text-lg font-medium">{file.name}</span>
+                    <div className="text-sm">{formatFileSize(file.size)}</div>
                   </div>
                 </div>
-                <button
-                  onClick={startOver}
-                  className="p-2 text-[color:var(--brand-midnight)] hover:bg-[color:var(--brand-cloud)] rounded-lg"
-                >
+                <button onClick={startOver} className="p-2 rounded-lg">
                   <svg
                     className="w-6 h-6"
                     fill="none"
@@ -247,24 +234,20 @@ export default function CompressPdf() {
           {/* Compression Quality Selection */}
           {file && (
             <div className="mt-8">
-              <h3 className="text-xl font-semibold text-[color:var(--brand-midnight)] mb-6">
+              <h3 className="text-xl font-semibold mb-6">
                 Compression Quality
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <button
                   onClick={() => setQuality("low")}
-                  className={`p-6 rounded-xl border-2 transition-colors ${
-                    quality === "low"
-                      ? "border-[color:var(--brand-forest)] bg-[var(--brand-cloud)] text-[color:var(--brand-midnight)]"
-                      : "border-[color:var(--brand-storm)]/25 hover:border-[color:var(--brand-storm)]/40"
+                  className={`p-6 rounded-xl border-1 transition-colors ${
+                    quality === "low" ? "border-[#ffffff]" : "border-[#4f4f4f]"
                   }`}
                 >
                   <div className="text-center">
                     <div className="font-medium text-lg mb-2">Low</div>
-                    <div className="text-[color:var(--brand-storm)] mb-1">
-                      Maximum compression
-                    </div>
-                    <div className="text-sm text-[color:var(--brand-storm)]/80">
+                    <div className="text-[#fff] mb-1">Maximum compression</div>
+                    <div className="text-sm text-[#ffffff]/80">
                       Smallest file size
                     </div>
                   </div>
@@ -272,18 +255,16 @@ export default function CompressPdf() {
 
                 <button
                   onClick={() => setQuality("medium")}
-                  className={`p-6 rounded-xl border-2 transition-colors ${
+                  className={`p-6 rounded-xl border-1 transition-colors ${
                     quality === "medium"
-                      ? "border-[color:var(--brand-forest)] bg-[var(--brand-cloud)] text-[color:var(--brand-midnight)]"
-                      : "border-[color:var(--brand-storm)]/25 hover:border-[color:var(--brand-storm)]/40"
+                      ? "border-[#ffffff]"
+                      : "border-[#4f4f4f]"
                   }`}
                 >
                   <div className="text-center">
                     <div className="font-medium text-lg mb-2">Medium</div>
-                    <div className="text-[color:var(--brand-storm)] mb-1">
-                      Balanced compression
-                    </div>
-                    <div className="text-sm text-[color:var(--brand-storm)]/80">
+                    <div className="text-[#fff] mb-1">Balanced compression</div>
+                    <div className="text-sm text-[#fff]/80">
                       Good quality & size
                     </div>
                   </div>
@@ -291,20 +272,14 @@ export default function CompressPdf() {
 
                 <button
                   onClick={() => setQuality("high")}
-                  className={`p-6 rounded-xl border-2 transition-colors ${
-                    quality === "high"
-                      ? "border-[color:var(--brand-forest)] bg-[var(--brand-cloud)] text-[color:var(--brand-midnight)]"
-                      : "border-[color:var(--brand-storm)]/25 hover:border-[color:var(--brand-storm)]/40"
+                  className={`p-6 rounded-xl border-1 transition-colors ${
+                    quality === "high" ? "border-[#ffffff]" : "border-[#4f4f4f]"
                   }`}
                 >
                   <div className="text-center">
                     <div className="font-medium text-lg mb-2">High</div>
-                    <div className="text-[color:var(--brand-storm)] mb-1">
-                      Minimum compression
-                    </div>
-                    <div className="text-sm text-[color:var(--brand-storm)]/80">
-                      Best quality
-                    </div>
+                    <div className="text-[#fff] mb-1">Minimum compression</div>
+                    <div className="text-sm text-[#fff]/80">Best quality</div>
                   </div>
                 </button>
               </div>
@@ -313,38 +288,32 @@ export default function CompressPdf() {
 
           {/* Compression Results */}
           {isCompressed && originalSize && compressedSize && (
-            <div className="mt-8 p-6 bg-[var(--brand-cloud)] rounded-xl border border-[color:var(--brand-storm)]/25">
-              <h3 className="text-xl font-semibold text-[color:var(--brand-midnight)] mb-4">
+            <div className="mt-8 p-6 rounded-xl border border-[#4f4f4f]/25">
+              <h3 className="text-xl font-semibold mb-4">
                 Compression Results
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-lg">
-                <div className="text-center p-4 bg-[var(--brand-cream)] rounded-lg border border-[color:var(--brand-storm)]/25">
-                  <div className="text-2xl font-medium text-[color:var(--brand-midnight)]">
+                <div className="text-center p-4 rounded-lg border border-[color:#fff]/25">
+                  <div className="text-2xl font-medium">
                     {formatFileSize(originalSize)}
                   </div>
-                  <div className="text-sm text-[color:var(--brand-storm)]">
-                    Original size
-                  </div>
+                  <div className="text-sm">Original size</div>
                 </div>
-                <div className="text-center p-4 bg-[var(--brand-cream)] rounded-lg border border-[color:var(--brand-storm)]/25">
-                  <div className="text-2xl font-medium text-[color:var(--brand-midnight)]">
+                <div className="text-center p-4  rounded-lg border border-[color:#fff]/25">
+                  <div className="text-2xl font-medium">
                     {formatFileSize(compressedSize)}
                   </div>
-                  <div className="text-sm text-[color:var(--brand-storm)]">
-                    Compressed size
-                  </div>
+                  <div className="text-sm">Compressed size</div>
                 </div>
-                <div className="text-center p-4 bg-[var(--brand-cream)] rounded-lg border border-[color:var(--brand-storm)]/25">
-                  <div className="text-2xl font-medium text-[color:var(--brand-midnight)]">
+                <div className="text-center p-4 rounded-lg border border-[color:#fff]/25">
+                  <div className="text-2xl font-medium ">
                     {(
                       ((originalSize - compressedSize) / originalSize) *
                       100
                     ).toFixed(1)}
                     %
                   </div>
-                  <div className="text-sm text-[color:var(--brand-storm)]">
-                    Size reduction
-                  </div>
+                  <div className="text-sm">Size reduction</div>
                 </div>
               </div>
             </div>
@@ -355,8 +324,8 @@ export default function CompressPdf() {
             <div
               className={`mt-6 p-4 rounded-lg text-center border ${
                 message.includes("successfully")
-                  ? "bg-[var(--brand-cloud)] text-[color:var(--brand-midnight)] border-[color:var(--brand-storm)]/25"
-                  : "bg-[var(--brand-cloud)] text-[color:var(--brand-midnight)] border-[color:var(--brand-storm)]/25"
+                  ? " border-[color:#4f4f4f]/25"
+                  : "border-[color:#4f4f4f]/25"
               }`}
             >
               {message}
@@ -370,13 +339,13 @@ export default function CompressPdf() {
               disabled={!file || isUploading}
               className={`w-full py-4 px-8 rounded-lg font-medium text-lg transition-colors ${
                 !file || isUploading
-                  ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-                  : "bg-[var(--brand-forest)] text-[var(--brand-cloud)]"
+                  ? "bg-[#fff] text-gray-600 cursor-not-allowed"
+                  : "bg-[#fff] text-[#4f4f4f]"
               }`}
             >
               {isUploading ? (
                 <div className="flex items-center justify-center space-x-3">
-                  <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-6 h-6 border-2 border-t-transparent rounded-full animate-spin"></div>
                   <span>Compressing...</span>
                 </div>
               ) : isCompressed ? (
@@ -404,7 +373,7 @@ export default function CompressPdf() {
             {isCompressed && (
               <button
                 onClick={startOver}
-                className="w-full py-3 px-8 rounded-lg font-medium bg-[var(--brand-cloud)] text-[color:var(--brand-midnight)] border border-[color:var(--brand-storm)]/25"
+                className="w-full py-3 px-8 rounded-lg font-medium border border-[color:#fff/25"
               >
                 Start Over
               </button>
@@ -413,15 +382,13 @@ export default function CompressPdf() {
         </div>
 
         {/* Instructions */}
-        <div className="mt-12 bg-[var(--brand-cream)] rounded-2xl p-8 border border-[color:var(--brand-storm)]/25">
-          <h3 className="text-2xl font-semibold text-[color:var(--brand-midnight)] mb-6">
-            How to use:
-          </h3>
+        <div className="mt-12 bg-[var(--card)] rounded-2xl p-8">
+          <h3 className="text-2xl font-semibold mb-6">How to use:</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <ol className="space-y-3 text-[color:var(--brand-storm)]">
+              <ol className="space-y-3">
                 <li className="flex items-start space-x-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-[var(--brand-sky)] text-[color:var(--brand-midnight)] rounded-full flex items-center justify-center text-sm font-medium">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm font-medium">
                     1
                   </span>
                   <span>
@@ -430,7 +397,7 @@ export default function CompressPdf() {
                   </span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-[var(--brand-sky)] text-[color:var(--brand-midnight)] rounded-full flex items-center justify-center text-sm font-medium">
+                  <span className="flex-shrink-0 w-6 h-6  rounded-full flex items-center justify-center text-sm font-medium">
                     2
                   </span>
                   <span>
@@ -438,13 +405,13 @@ export default function CompressPdf() {
                   </span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-[var(--brand-sky)] text-[color:var(--brand-midnight)] rounded-full flex items-center justify-center text-sm font-medium">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm font-medium">
                     3
                   </span>
                   <span>Click the "Compress PDF" button</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-[var(--brand-sky)] text-[color:var(--brand-midnight)] rounded-full flex items-center justify-center text-sm font-medium">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm font-medium">
                     4
                   </span>
                   <span>Download your compressed PDF file</span>
@@ -452,42 +419,36 @@ export default function CompressPdf() {
               </ol>
             </div>
 
-            <div className="bg-[var(--brand-cloud)] rounded-xl p-6 border border-[color:var(--brand-storm)]/25">
-              <h4 className="font-semibold text-[color:var(--brand-midnight)] mb-4 text-lg">
+            <div className="bg-[#4f4f4f] rounded-xl p-6">
+              <h4 className="font-semibold mb-4 text-lg">
                 Compression Quality Guide:
               </h4>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <div className="w-3 h-3 bg-[var(--brand-storm)] rounded-full"></div>
                   <div>
-                    <span className="font-medium text-[color:var(--brand-midnight)]">
-                      Low:
-                    </span>
-                    <span className="text-[color:var(--brand-storm)] text-sm">
+                    <span className="font-medium">Low:</span>
+                    <span className=" text-sm">
                       {" "}
                       Maximum compression, smallest file size
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-[var(--brand-storm)] rounded-full"></div>
+                  <div className="w-3 h-3 rounded-full"></div>
                   <div>
-                    <span className="font-medium text-[color:var(--brand-midnight)]">
-                      Medium:
-                    </span>
-                    <span className="text-[color:var(--brand-storm)] text-sm">
+                    <span className="font-medium ">Medium:</span>
+                    <span className=" text-sm">
                       {" "}
                       Balanced compression, good quality and size
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-[var(--brand-storm)] rounded-full"></div>
+                  <div className="w-3 h-3  rounded-full"></div>
                   <div>
-                    <span className="font-medium text-[color:var(--brand-midnight)]">
-                      High:
-                    </span>
-                    <span className="text-[color:var(--brand-storm)] text-sm">
+                    <span className="font-medium ">High:</span>
+                    <span className="text-sm">
                       {" "}
                       Minimum compression, best quality
                     </span>
