@@ -1,42 +1,36 @@
 // src/components/HeroSection.jsx
 import React from "react";
-import GlowingDot from "./Star";
 
 const Hero = () => {
   return (
-    <section className="relative py-15 md:py-22 bg-[var(--background)]">
-      {/* Main content */}
-      <div className="relative z-10 container mx-auto px-4 text-center max-w-6xl">
-        {/* Eyebrow */}
-        <div className="inline-flex items-center px-3 py-1 rounded-full border border-[#4f4f4f] mb-8">
-          <span className="w-1.5 h-1.5 bg-[#ffffff] rounded-full mr-2"></span>
-          <span className="text-sm font-medium">Professional PDF tools</span>
-        </div>
-
+    <section className="py-16 md:py-24 bg-gray-50">
+      <div className="container mx-auto px-4 text-center max-w-4xl">
         {/* Main heading */}
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-6">
-          Effortless PDF Management
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+          Professional PDF Tools
         </h1>
 
         {/* Subtitle */}
-        <p className="mx-auto mt-6 max-w-3xl text-xl md:text-xl text-[#adadad] leading-relaxed">
-          A sober, reliable suite of PDF tools built for professionals. No
-          clutter, no noise - just the essentials.
+        <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          Merge, split, compress, and convert PDFs with ease. Fast, secure, and privacy-focused.
         </p>
 
         {/* CTA buttons */}
-        <div className="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-4">
-          <button className="px-8 py-3 bg-[#fff] text-[#141414] font-bold rounded-full">
-            Get Started
-          </button>
+        <div className="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-4 mb-16">
+          <a href="/merge-pdf" className="btn-primary">
+            Start Merging PDFs
+          </a>
+          <a href="/split-pdf" className="btn-secondary">
+            Split PDFs
+          </a>
         </div>
 
         {/* Feature highlights */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="flex flex-col items-center p-6 bg-[var(--card)] rounded-2xl">
-            <div className="w-12 h-12 bg-[#4f4f4f] rounded-xl flex items-center justify-center mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="card text-center">
+            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
               <svg
-                className="w-6 h-6 text-white"
+                className="w-6 h-6 text-blue-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -49,16 +43,16 @@ const Hero = () => {
                 />
               </svg>
             </div>
-            <h3 className="font-medium mb-2">Fast Processing</h3>
-            <p className="text-sm text-[#adadad] text-center">
+            <h3 className="font-semibold text-gray-900 mb-2">Fast Processing</h3>
+            <p className="text-sm text-gray-600">
               Process PDFs in seconds
             </p>
           </div>
 
-          <div className="flex flex-col items-center p-6 bg-[var(--card)] rounded-2xl">
-            <div className="w-12 h-12 bg-[#4f4f4f] rounded-xl flex items-center justify-center mb-4">
+          <div className="card text-center">
+            <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
               <svg
-                className="w-6 h-6 text-white"
+                className="w-6 h-6 text-green-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -71,16 +65,16 @@ const Hero = () => {
                 />
               </svg>
             </div>
-            <h3 className="font-medium mb-2">Privacy First</h3>
-            <p className="text-sm text-[#adadad] text-center">
+            <h3 className="font-semibold text-gray-900 mb-2">Privacy First</h3>
+            <p className="text-sm text-gray-600">
               Files auto-delete after 1 hour
             </p>
           </div>
 
-          <div className="flex flex-col items-center p-6 bg-[var(--card)] rounded-2xl">
-            <div className="w-12 h-12 bg-[#4f4f4f] rounded-xl flex items-center justify-center mb-4">
+          <div className="card text-center">
+            <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
               <svg
-                className="w-6 h-6 text-white"
+                className="w-6 h-6 text-gray-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -93,8 +87,8 @@ const Hero = () => {
                 />
               </svg>
             </div>
-            <h3 className="font-medium mb-2">Works Everywhere</h3>
-            <p className="text-sm text-[#adadad] text-center">
+            <h3 className="font-semibold text-gray-900 mb-2">Works Everywhere</h3>
+            <p className="text-sm text-gray-600">
               Seamless on all devices
             </p>
           </div>

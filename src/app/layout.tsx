@@ -10,8 +10,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "BRoOOOOO",
-  description: ":)",
+  title: "RuneBind - Professional PDF Tools",
+  description: "Fast, secure, and privacy-focused PDF tools for merging, splitting, compressing, and converting PDFs. No registration required.",
+  keywords: "PDF tools, merge PDF, split PDF, compress PDF, convert PDF, PDF editor",
+  authors: [{ name: "RuneBind" }],
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
@@ -23,7 +26,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <Navbar />
-        {children}
+        <main className="min-h-screen">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

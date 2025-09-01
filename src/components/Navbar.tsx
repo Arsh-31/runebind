@@ -1,33 +1,29 @@
 "use client";
 import React from "react";
-import { FileText, User, LogIn, Moon, Sun, Settings } from "lucide-react"; // Import more relevant icons
+import Link from "next/link";
+import { FileText } from "lucide-react";
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="bg-[var(--background)] shadow-sm sticky top-0 z-50">
+    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {" "}
-          {/* Reduced height for sleeker look */}
           {/* Logo & Brand Name */}
-          <div className="flex items-center space-x-2 cursor-pointer group">
-            <div className="p-2 rounded-lg text-brand-primary-accent group-hover:bg-brand-primary-accent/10 transition-colors">
-              <FileText className="w-7 h-7" /> {/* Slightly larger icon */}
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="p-2 rounded-lg text-blue-600 group-hover:bg-blue-50 transition-colors">
+              <FileText className="w-6 h-6" />
             </div>
-            <span className="text-xl font-semibold text-foreground group-hover:text-brand-primary-accent transition-colors">
+            <span className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
               RuneBind
             </span>
-          </div>
-          {/* Main Navigation (Feature-Oriented) */}
-          <div className="hidden md:flex items-center space-x-6 text-foreground-dark-secondary">
-            {" "}
-            {/* Hide on small screens */}
-            <NavItem label="Merge PDF" href="/merge" />
-            <NavItem label="Split PDF" href="/split" />
-            <NavItem label="Compress PDF" href="/compress" />{" "}
-            {/* Example of another service */}
-            <NavItem label="Upload" href="/upload" primary />{" "}
-            {/* Direct upload option */}
+          </Link>
+
+          {/* Main Navigation */}
+          <div className="hidden md:flex items-center space-x-6">
+            <NavItem label="Merge PDF" href="/merge-pdf" />
+            <NavItem label="Split PDF" href="/split-pdf" />
+            <NavItem label="Compress PDF" href="/compress-pdf" />
+            <NavItem label="Convert to JPG" href="/pdf-to-jpg" />
           </div>
         </div>
       </div>
@@ -38,24 +34,16 @@ const Navbar: React.FC = () => {
 interface NavItemProps {
   label: string;
   href: string;
-  primary?: boolean; // For a more prominent item like "Upload"
 }
 
-const NavItem: React.FC<NavItemProps> = ({ label, href, primary }) => {
+const NavItem: React.FC<NavItemProps> = ({ label, href }) => {
   return (
-    <a
+    <Link
       href={href}
-      className={`flex items-center space-x-1 font-medium transition-colors
-        ${
-          primary
-            ? "px-3 py-1.5 rounded-lg bg-brand-primary-accent text-white hover:bg-brand-primary-accent/90 focus:outline-none focus:ring-2 focus:ring-brand-primary-accent"
-            : "text-foreground-dark-secondary hover:text-foreground-dark-primary hover:bg-background-wash px-3 py-1.5 rounded-md"
-        }
-      `}
+      className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
     >
-      <span className="hidden lg:block">{label}</span>{" "}
-      {/* Hide label on smaller md screens */}
-    </a>
+      {label}
+    </Link>
   );
 };
 
