@@ -10,10 +10,10 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo & Brand Name */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="p-2 rounded-lg text-blue-600 group-hover:bg-blue-50 transition-colors">
+            <div className="p-2 rounded-lg text-[#f67e32] group-hover:bg-[#f67e32]/8 transition-colors">
               <FileText className="w-6 h-6" />
             </div>
-            <span className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+            <span className="text-xl font-semibold text-gray-900 group-hover:text-[#ff395c]transition-colors">
               RuneBind
             </span>
           </Link>
@@ -40,7 +40,7 @@ const NavItem: React.FC<NavItemProps> = ({ label, href }) => {
   return (
     <Link
       href={href}
-      className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+      className="text-gray-600 hover:text-[#f67e32] px-3 py-2 rounded-md text-sm font-medium transition-colors"
     >
       {label}
     </Link>

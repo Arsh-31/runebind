@@ -67,13 +67,15 @@ const HowToUseSection: React.FC = () => {
                   className="relative flex flex-col items-center text-center"
                 >
                   {/* Step Number Circle */}
-                  <div className="relative z-20 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-lg font-semibold mb-4">
+                  <div className="relative z-20 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#f67e32] text-white text-lg font-semibold mb-4">
                     {item.step}
                   </div>
 
                   {/* Content Card */}
-                  <div className="card text-center">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
+                  <div className="card text-center h-full">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      {item.title}
+                    </h3>
                     <p className="text-gray-600 leading-relaxed">
                       {item.description}
                     </p>
@@ -98,7 +100,9 @@ const HowToUseSection: React.FC = () => {
                     <div className="p-1 bg-green-100 rounded-lg mt-1">
                       <Check className="h-4 w-4 text-green-600" />
                     </div>
-                    <span className="text-gray-700 leading-relaxed">{benefit}</span>
+                    <span className="text-gray-700 leading-relaxed">
+                      {benefit}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -106,8 +110,8 @@ const HowToUseSection: React.FC = () => {
             <div className="relative">
               <div className="card">
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <Shield className="h-6 w-6 text-blue-600" />
+                  <div className="p-2 bg-[#f67e32]/10 rounded-lg">
+                    <Shield className="h-6 w-6 text-[#f67e32]" />
                   </div>
                   <h3 className="text-2xl font-semibold text-gray-900">
                     Privacy First

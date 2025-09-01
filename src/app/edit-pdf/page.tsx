@@ -2,17 +2,19 @@ import { Edit } from "lucide-react";
 
 export default function EditPdfPage() {
   return (
-    <div className="min-h-[73vh] bg-[var(--background)] flex items-center">
+    <div className="min-h-[73vh] flex items-center bg-gray-50 transition-colors">
       <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-2xl rounded-2xl bg-[var(--card)] p-8 shadow-lg">
+        <div className="mx-auto max-w-2xl rounded-2xl border border-blue-200 bg-white  p-8 shadow-lg transition-colors">
           <div className="text-center">
             <div className="mb-6 flex items-center justify-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#4f4f4f]">
-                <Edit className="" size={28} />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600 ">
+                <Edit size={28} />
               </div>
             </div>
-            <h2 className="mb-3 text-2xl font-semibold ">Edit PDF Feature</h2>
-            <p className=" leading-relaxed">
+            <h2 className="mb-3 text-2xl font-semibold text-gray-800 ">
+              Edit PDF Feature
+            </h2>
+            <p className="leading-relaxed text-gray-600">
               This feature is coming soon! You’ll be able to edit text, images,
               and pages directly inside your PDF files.
             </p>

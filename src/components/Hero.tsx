@@ -12,7 +12,8 @@ const Hero = () => {
 
         {/* Subtitle */}
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-          Merge, split, compress, and convert PDFs with ease. Fast, secure, and privacy-focused.
+          Merge, split, compress, and convert PDFs with ease. Fast, secure, and
+          privacy-focused.
         </p>
 
         {/* CTA buttons */}
@@ -43,10 +44,10 @@ const Hero = () => {
                 />
               </svg>
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Fast Processing</h3>
-            <p className="text-sm text-gray-600">
-              Process PDFs in seconds
-            </p>
+            <h3 className="font-semibold text-gray-900 mb-2">
+              Fast Processing
+            </h3>
+            <p className="text-sm text-gray-600">Process PDFs in seconds</p>
           </div>
 
           <div className="card text-center">
@@ -66,15 +67,13 @@ const Hero = () => {
               </svg>
             </div>
             <h3 className="font-semibold text-gray-900 mb-2">Privacy First</h3>
-            <p className="text-sm text-gray-600">
-              Files auto-delete after 1 hour
-            </p>
+            <p className="text-sm text-gray-600">Files auto-delete instantly</p>
           </div>
 
           <div className="card text-center">
-            <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
+            <div className="w-12 h-12 bg-[#f67e32]/10 rounded-xl flex items-center justify-center mb-4 mx-auto">
               <svg
-                className="w-6 h-6 text-gray-600"
+                className="w-6 h-6 text-[#f67e32]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -87,10 +86,10 @@ const Hero = () => {
                 />
               </svg>
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Works Everywhere</h3>
-            <p className="text-sm text-gray-600">
-              Seamless on all devices
-            </p>
+            <h3 className="font-semibold text-gray-900 mb-2">
+              Works Everywhere
+            </h3>
+            <p className="text-sm text-gray-600">Seamless on all devices</p>
           </div>
         </div>
       </div>
