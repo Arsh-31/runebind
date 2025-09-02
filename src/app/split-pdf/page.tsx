@@ -72,9 +72,6 @@ export default function SplitPdf() {
     const arrayBuffer = await file.arrayBuffer();
     const pdfBytes = new Uint8Array(arrayBuffer);
 
-    // We'll use a simple approach to get page count
-    // In a real app, you might want to use pdf-lib on the frontend
-    // For now, we'll estimate based on file size (rough approximation)
     const estimatedPages = Math.max(1, Math.floor(file.size / 50000)); // Rough estimate
     return estimatedPages;
   };

@@ -36,7 +36,7 @@ const steps: Step[] = [
 ];
 
 const benefits = [
-  "Privacy-first approach - files auto-delete after 1 hour",
+  "Privacy-first approach - files auto-delete instantly",
   "No registration required",
   "Fast processing with progress indicators",
   "Mobile responsive design",

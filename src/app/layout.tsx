@@ -16,7 +16,11 @@ export const metadata: Metadata = {
   keywords:
     "PDF tools, merge PDF, split PDF, compress PDF, convert PDF, PDF editor",
   authors: [{ name: "RuneBind" }],
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
