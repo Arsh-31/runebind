@@ -239,7 +239,7 @@ export default function PdfToJpg() {
               </div>
             </div>
           )}
-          {/* After conversion */}
+          {/* After conversion ?????????????*/}
           {isConverted && conversionResult && (
             <div className="mt-6 p-4 rounded-xl border border-[#4f4f4f]">
               <h3 className="text-lg font-semibold mb-2">Conversion Details</h3>
