@@ -69,8 +69,8 @@ export default function SplitPdf() {
   };
 
   const getPageCount = async (file: File): Promise<number> => {
-    const arrayBuffer = await file.arrayBuffer();
-    const pdfBytes = new Uint8Array(arrayBuffer);
+    // const arrayBuffer = await file.arrayBuffer();
+    // const pdfBytes = new Uint8Array(arrayBuffer);
 
     const estimatedPages = Math.max(1, Math.floor(file.size / 50000)); // Rough estimate
     return estimatedPages;

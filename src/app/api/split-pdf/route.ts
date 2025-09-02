@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
     const newPdfBytes = await newPdf.save();
 
     // Return the split PDF as a response
-    return new NextResponse(newPdfBytes as any, {
+    return new NextResponse(Buffer.from(newPdfBytes), {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",

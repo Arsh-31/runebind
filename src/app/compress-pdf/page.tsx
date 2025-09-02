@@ -229,7 +229,7 @@ export default function CompressPdf() {
                 {["low", "medium", "high"].map((q) => (
                   <button
                     key={q}
-                    onClick={() => setQuality(q as any)}
+                    onClick={() => setQuality(q as "low" | "medium" | "high")}
                     className={`p-4 rounded-lg border text-center transition-colors ${
                       quality === q
                         ? "border-blue-600 bg-blue-50"

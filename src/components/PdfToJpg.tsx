@@ -3,10 +3,17 @@
 import { useState, useRef } from "react";
 
 export default function PdfToJpg() {
+  type ConversionResult = {
+    images: string[];
+    zipUrl: string;
+    totalPages: number;
+  };
+
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [message, setMessage] = useState("");
-  const [conversionResult, setConversionResult] = useState<any>(null);
+  const [conversionResult, setConversionResult] =
+    useState<ConversionResult | null>(null);
   const [isConverted, setIsConverted] = useState(false);
   const [pages, setPages] = useState("all");
   const [quality, setQuality] = useState(80);
@@ -230,6 +237,14 @@ export default function PdfToJpg() {
                   <span>100%</span>
                 </div>
               </div>
+            </div>
+          )}
+          {/* After conversion */}
+          {isConverted && conversionResult && (
+            <div className="mt-6 p-4 rounded-xl border border-[#4f4f4f]">
+              <h3 className="text-lg font-semibold mb-2">Conversion Details</h3>
+              <p>Total Pages: {totalPages}</p>
+              <p>Images Converted: {conversionResult.images.length}</p>
             </div>
           )}
 

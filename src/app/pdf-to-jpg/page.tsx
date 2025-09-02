@@ -10,13 +10,23 @@ import {
 } from "lucide-react";
 
 export default function PdfToJpg() {
+  type ConversionResult =
+    | Blob
+    | {
+        zipUrl?: string;
+        images?: string[];
+        totalPages?: number;
+      }
+    | null;
+
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState<"success" | "error" | "info">(
     "info"
   );
-  const [conversionResult, setConversionResult] = useState<any>(null);
+  const [conversionResult, setConversionResult] =
+    useState<ConversionResult>(null);
   const [isConverted, setIsConverted] = useState(false);
   const [pages, setPages] = useState<string>("all");
   const [quality, setQuality] = useState<number>(80);
@@ -420,7 +430,7 @@ export default function PdfToJpg() {
           </h3>
           <ol className="space-y-3 text-gray-600">
             <li>Upload a PDF by drag/drop or click</li>
-            <li>Enter pages to convert (or leave "all")</li>
+            <li>Enter pages to convert (or leave &quot;all&quot;)</li>
             <li>Adjust JPG quality if needed</li>
             <li>Click Convert and then Download</li>
           </ol>
