@@ -12,35 +12,11 @@ RuneBind is a modern, professional PDF processing web application built with Nex
 - **No registration required**: Start using immediately
 - **Mobile responsive**: Works seamlessly on all devices
 
-## Design
-
-Built with a "Cool & Serene" color scheme featuring:
-- Professional blue accents (#3498DB)
-- Clean green success states (#2ECC71)
-- Subtle gray backgrounds for optimal readability
-- Consistent, minimal design for easy navigation
-
 ## Tech Stack
 
 - **Frontend**: Next.js 15, React 19, TypeScript
 - **Styling**: Tailwind CSS 4
 - **PDF Processing**: pdf-lib
-- **Icons**: Lucide React
-- **Deployment**: Vercel-ready
-
-## Getting Started
-
-1. Install dependencies:
-   ```sh
-   npm install
-   ```
-
-2. Run the development server:
-   ```sh
-   npm run dev
-   ```
-
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Usage
 
@@ -59,29 +35,6 @@ Built with a "Cool & Serene" color scheme featuring:
 ## Privacy & Security
 
 - Files are processed in memory and never stored permanently
-- Automatic deletion after 1 hour
+- Automatic deletion instantly
 - No user accounts or data collection
 - Secure HTTPS connections
-
-## Development
-
-```sh
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Run linting
-npm run lint
-```
-
-## License
-
-MIT License - feel free to use this project for your own needs.
